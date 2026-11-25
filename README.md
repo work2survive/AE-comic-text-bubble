@@ -95,8 +95,13 @@ Creating authentic comic speech balloons in Adobe After Effects has traditionall
 | **Scream Spike** | Exaggerated needle-sharp action barb | Screams, sudden shock, shouting |
 | **None** | Floating bubble or caption box without tail | Standalone narration, captions |
 
-### 6. 🎯 Drag & Drop Tail Placement Target
-- **In-Comp Null Controller**: Automatically creates a dedicated `"🎯 Tail Target"` null layer in your After Effects composition. Drag the null handle directly in the AE comp viewer to point the tail at any character's mouth interactively! When you click **Build / Rebuild**, the panel automatically detects where you placed the null and realigns the tail.
+### 6. 🎯 Animatable Drag & Drop Tail Placement (Real-Time Expression Rigging)
+- **Live Animatable Tail (`createPath`)**: The speech tail pointer is **fully animatable and keyframeable** in the After Effects timeline! The tool generates a native After Effects path expression on the vector Path property:
+  $$\mathbf{P}_{\text{tip}} = \text{fromComp}\Big(\mathbf{L}_{\text{target}}.\text{toComp}(\mathbf{L}_{\text{target}}.\text{anchorPoint})\Big)$$
+  As you keyframe the `"🎯 Tail Target"` null layer across time (e.g. following an actor walking or turning their head), the speech balloon's tail smoothly stretches, re-angles, and rotates in real time!
+- **Interactive Comp Viewer Dragging**: In the comp viewer, simply grab and drag the `"🎯 Tail Target"` handle—the tail updates live under your cursor!
+- **Dynamic Thought Puffs Following**: When using thought bubbles, all descending puff circles dynamically interpolate along the line between the cloud and the thinker's head at every frame.
+- **Dynamic Text Centering**: The bubble layer automatically stays centered on the text layer if the dialogue or text position animates.
 - **Interactive In-Panel 2D Target Pad**: Visual direction pad with 3x3 matrix presets:
   `[ ↖ Top-Left ]` `[ ↑ Top-Center ]` `[ ↗ Top-Right ]`  
   `[ ← Mid-Left ]` `[ 🎯 Center ]`    `[ → Mid-Right ]`  
