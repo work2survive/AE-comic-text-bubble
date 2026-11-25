@@ -68,38 +68,46 @@ Creating authentic comic speech balloons in Adobe After Effects has traditionall
   `[💥 POW]` `[💬 SAY]` `[🗯️ SHOUT]` `[⚡ ZAP]` `[💡 IDEA]` `[❤️ LOVE]` `[❓ WHAT]` `[❗ HEY]` `[💣 BOOM]` `[💤 ZZZ]`
 - Click any button to insert the symbol directly into your speech text.
 
-### 4. 🗯️ 6 Balloon Body Presets
-| Preset | Visual Shape | Ideal Use Case |
+### 4. 🗯️ 10 Balloon Body Presets
+| Preset | Visual Shape & Geometry | Reference & Ideal Use Case |
 | :--- | :--- | :--- |
-| **Classic Speech Oval** | Smooth elliptical curve | Standard dialogue, narrative dialogue |
-| **Modern Rounded Rect** | Pill / Box with customizable corner radii | Modern graphic novels, comics, subtitles |
-| **Action / Shout Burst** | Spiky jagged explosion balloon | Screams, sound effects, action bursts (POW! BOOM!) |
-| **Thought Cloud** | Puffy scalloped cloud arcs | Inner monologues, dreams, contemplation |
-| **Whisper Bubble** | Dashed outline rounded bubble | Whispers, secretive dialogue, soft speech |
-| **Golden Age Caption Box** | Crisp rectangular box ($R=0$) | Narrator captions, timecards, comic boxes |
+| **Classic Speech Oval** | Smooth 4-quadrant Bézier ellipse ($\kappa = 0.55228$) | Standard dialogue, classic cartoon lettering |
+| **Convex Squircle** | Superellipse ($n = 3.2$) with bowed outward Bézier walls | Modern graphic novels, Marvel/DC/Image comics (*image_4*) |
+| **Modern Rounded Rect** | Pill / Box with customizable corner radii ($R=28\text{px}$) | Clean comic lettering, webtoons, subtitles (*image_6*) |
+| **Angular Tilted Polygon** | Dynamic skewed comic quadrilateral with sharp corners | Energetic manga shouting, robotic / cyborg dialogue (*image_2*) |
+| **Stepped Text Contour** | Multi-tier stepped contour hugging individual line widths with rounded fillets | Lettering with variable-length lines, manga balloons (*image_3*) |
+| **Docked Flat-Top Balloon** | Flat horizontal top edge ($y=-b$), sharp top corners, rounded bottom | Framed / panel-edge docked dialogue (*image.png*) |
+| **Action / Shout Burst** | Spiky jagged 16-point starburst explosion | Screams, punch sound effects, explosions (POW! BOOM!) |
+| **Thought Cloud** | 12-puff scalloped cloud arcs | Inner monologues, dreams, contemplation (*image_3b*) |
+| **Whisper Bubble** | Rounded contour with dashed stroke outline | Whispers, secretive dialogue, soft speech (*image_3c*) |
+| **Golden Age Caption Box** | Crisp rectangular box ($R=0$) with corner tail support | Narrator captions, timecards, classic comic boxes (*image_5*) |
 
-### 5. ⚡ 7 Tail Style Presets
-- **Curved Hook / Horn**: Classic comic tail with smooth inward Bézier curvature pointing towards the speaker.
-- **Straight Cone / Triangle**: Direct crisp triangular speech pointer.
-- **Wide Speech Wedge**: Sturdy, broad-base dialogue wedge.
-- **Thought Bubbles**: Chain of 3 diminishing circles leading from the cloud to the thinker.
-- **Lightning / Electric Bolt**: 3-segment jagged zigzag tail for robots, radio broadcasts, phone calls, and electronic screams.
-- **Scream Spike**: Exaggerated, needle-sharp action barb.
-- **None**: Floating bubble or caption box without tail.
+### 5. ⚡ 9 Tail Style Presets
+| Preset | Pointer Geometry | Reference & Visual Style |
+| :--- | :--- | :--- |
+| **Curved Hook / Horn** | Classic comic sweeping horn with inward Bézier curvature | Classic comic speech (*image_3a*, *image_4*) |
+| **Straight Cone / Triangle** | Direct crisp triangular pointer with straight edges | Clean modern comics, docked balloons (*image.png*) |
+| **Side-Pointing Wedge** | Horizontal wedge pointer projecting from left or right wall | Side-speaking characters, split panels (*image_2*) |
+| **Corner Pointer / Tail** | Integrated triangular tail extending directly from bottom corner | Inked boxes & rounded rects (*image_5*, *image_6*) |
+| **Wide Speech Wedge** | Sturdy broad-base dialogue wedge | Heavy / loud dialogue |
+| **Thought Bubbles** | Chain of 3 diminishing circular bubbles ($18\text{px} \to 11\text{px} \to 6\text{px}$) | Inner thoughts, dreaming (*image_3b*) |
+| **Lightning / Electric Bolt** | Jagged zigzag tail for electronic speech | Radios, robots, phone speakers, broadcasts |
+| **Scream Spike** | Exaggerated needle-sharp action barb | Screams, sudden shock, shouting |
+| **None** | Floating bubble or caption box without tail | Standalone narration, captions |
 
 ### 6. 🎯 Drag & Drop Tail Placement Target
-- **In-Comp Null Controller**: Automatically creates a dedicated `"🎯 Tail Target"` null layer in your After Effects composition. Drag the null handle directly in the AE comp viewer to point the tail at any character's mouth interactively!
-- **Interactive In-Panel 2D Target Pad**: Visual pad with a draggable target crosshair.
-- **3x3 Quick Direction Matrix**:
+- **In-Comp Null Controller**: Automatically creates a dedicated `"🎯 Tail Target"` null layer in your After Effects composition. Drag the null handle directly in the AE comp viewer to point the tail at any character's mouth interactively! When you click **Build / Rebuild**, the panel automatically detects where you placed the null and realigns the tail.
+- **Interactive In-Panel 2D Target Pad**: Visual direction pad with 3x3 matrix presets:
   `[ ↖ Top-Left ]` `[ ↑ Top-Center ]` `[ ↗ Top-Right ]`  
   `[ ← Mid-Left ]` `[ 🎯 Center ]`    `[ → Mid-Right ]`  
   `[ ↙ Bot-Left ]` `[ ↓ Bot-Center ]` `[ ↘ Bot-Right ]`  
 - **Precision Sliders**: Tail Angle (`-180°` to `+180°`) and Tail Distance (`20` to `350 px`).
 
-### 7. 🎨 Color Pickers & Comic Palettes
+### 7. 🎨 Color Pickers, Dashed Outlines & Highlight Accents
 - **Background Fill Color**: Hex text box + Clickable Color Swatch (compatible with `windows-color-picker.js` and native AE picker).
-- **Stroke Outline Color**: Hex text box + Clickable Color Swatch.
-- **Stroke Width**: `0` to `30 px` bold comic line control with round cap & join.
+- **Stroke Outline Color**: Hex text box + Clickable Color Swatch + Stroke Width (`0` to `30 px`).
+- **Dashed Outline Toggle**: Enable dashed outline on any balloon shape (ideal for whisper balloons like *image_3c*).
+- **Comic Punch Word Highlight Accent**: From **AE-Text-Highlight**, automatically renders accent highlight cards behind key punch words (e.g. `POW`, `EVERYTHING`, `ARGUMENT` as seen in *image_4*).
 - **Quick Comic Themes**: Instant 1-click theme palettes:
   - **Classic**: Pure White fill (`#FFFFFF`), Solid Black stroke (`#000000`)
   - **Action**: Vibrant Yellow fill (`#FFE600`), Jet Black stroke (`#111111`)
