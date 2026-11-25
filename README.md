@@ -99,14 +99,15 @@ Creating authentic comic speech balloons in Adobe After Effects has traditionall
 - **Live Animatable Tail (`createPath`)**: The speech tail pointer is **fully animatable and keyframeable** in the After Effects timeline! The tool generates a native After Effects path expression on the vector Path property:
   $$\mathbf{P}_{\text{tip}} = \text{fromComp}\Big(\mathbf{L}_{\text{target}}.\text{toComp}(\mathbf{L}_{\text{target}}.\text{anchorPoint})\Big)$$
   As you keyframe the `"🎯 Tail Target"` null layer across time (e.g. following an actor walking or turning their head), the speech balloon's tail smoothly stretches, re-angles, and rotates in real time!
+- **Perimeter Collision Prevention & Boundary Clamping**: The tail target can **never penetrate inside the balloon perimeter**. Both the procedural vector generator and the real-time expression engine calculate the exact mathematical boundary distance along ray $\theta$ plus an eighteen-pixel clearance safety margin ($R_{\text{bound}}(\theta) + 18\text{px}$ for oval, squircle, or box). Even if the user drags the `"🎯 Tail Target"` null right through the text or comp center, the tail tip strictly clamps at the balloon perimeter and glides smoothly along the contour without inverting or penetrating into the dialogue area!
 - **Interactive Comp Viewer Dragging**: In the comp viewer, simply grab and drag the `"🎯 Tail Target"` handle—the tail updates live under your cursor!
 - **Dynamic Thought Puffs Following**: When using thought bubbles, all descending puff circles dynamically interpolate along the line between the cloud and the thinker's head at every frame.
 - **Dynamic Text Centering**: The bubble layer automatically stays centered on the text layer if the dialogue or text position animates.
 - **Interactive In-Panel 2D Target Pad**: Visual direction pad with 3x3 matrix presets:
   `[ ↖ Top-Left ]` `[ ↑ Top-Center ]` `[ ↗ Top-Right ]`  
-  `[ ← Mid-Left ]` `[ 🎯 Center ]`    `[ → Mid-Right ]`  
+  `[ ← Mid-Left ]` `[ 🎯 Reset ]`     `[ → Mid-Right ]`  
   `[ ↙ Bot-Left ]` `[ ↓ Bot-Center ]` `[ ↘ Bot-Right ]`  
-- **Precision Sliders**: Tail Angle (`-180°` to `+180°`) and Tail Distance (`20` to `350 px`).
+- **Precision Sliders**: Tail Angle (`-180°` to `+180°`) and Tail Distance (`60` to `450 px`, clamped $\ge R_{\text{bound}} + 18\text{px}$).
 
 ### 7. 🎨 Color Pickers, Dashed Outlines & Highlight Accents
 - **Background Fill Color**: Hex text box + Clickable Color Swatch (compatible with `windows-color-picker.js` and native AE picker).
