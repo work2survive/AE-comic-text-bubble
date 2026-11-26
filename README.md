@@ -1,6 +1,6 @@
-# AE Comic Text Bubble (v2.0.0)
+# AE Comic Text Bubble (v2.1.0)
 
-> **Ground-Up Parametric Comic Balloon Generator for Adobe After Effects — Combining Zero-Shift Precomposition, Center Anchor Alignment, Trim-Paths-Style Tail Targeting, and Full Preset Management.**  
+> **Ground-Up Parametric Comic Balloon Generator for Adobe After Effects — Combining Zero-Shift Precomposition, Center Anchor Alignment, Trim-Paths-Style Tail Targeting, In / Out Animations, and Full Preset Management.**  
 > *Co-authored & architected with Google DeepMind Antigravity for `work2survive` motion graphics ecosystems.*
 
 [![Live Web Demo](https://img.shields.io/badge/Live%20Demo-AE%20JS%20Builder-4183C4?style=for-the-badge&logo=adobeaftereffects&logoColor=white)](https://work2survive.github.io/AE_JS_builder/?jsx=AE_Comic_Text_Bubble.jsx&autobuild=true)
@@ -37,7 +37,7 @@ Text layers can be freely combined with:
 
 ### 1. Top Bar: Full Preset Management
 Manage reusable comic styles right at the top of the panel:
-- **Store**: Save current balloon, tail, and appearance settings under a custom name.
+- **Store**: Save current balloon, tail, appearance, and In/Out settings under a custom name.
 - **Rename**: Rename any existing preset in place.
 - **Delete**: Remove unwanted presets cleanly.
 - **Open**: Import single-preset or multi-preset `.json` files from disk.
@@ -47,8 +47,8 @@ Manage reusable comic styles right at the top of the panel:
 - **4 Parametric Balloon Geometries**:
   - **Square**: Crisp comic caption / sharp rectangular dialogue box.
   - **Rounded Corners**: Exact cubic Bézier rounded rectangle with adjustable **Corner Radius**.
-  - **Cloud Shape (Thoughts)**: Scalloped comic cloud perimeter with configurable **Cloud Puffs** and **Puff Depth** (guaranteed never to clip text corners).
-  - **Explosion / Shout**: High-energy radial comic starburst with configurable **Burst Spikes** and **Spike Length**.
+  - **Cloud Shape (Thoughts)**: Divides the balloon perimeter into exact **constant-width** puffs (**Cloud Puffs**), with **Puff Depth (%)** scaled strictly relative to each individual puff's width, plus a **Puff Width Rand (%)** randomizer that varies puff widths while preserving the exact puff count.
+  - **Explosion / Shout**: Divides the balloon perimeter into exact **constant-width** spikes (**Burst Spikes**), with **Spike Depth (%)** scaled strictly relative to each individual spike's width, plus a **Spike Width Rand (%)** randomizer that varies spike widths while preserving the exact spike count.
 - **Exterior Padding (`Padding X`, `Padding Y`)**: Expands balloon space around the rendered text bounds while keeping both the Text Box and Balloon Anchor Points centered horizontally & vertically.
 
 ### 3. Tab 2 — `Tail` (Styles & Trim-Paths Perimeter Targeting)
@@ -60,7 +60,7 @@ Every tail style works with **any** balloon geometry regardless of preset:
   - **Lightning Shaped**: Non-self-intersecting zig-zag radio/electronic comic bolt spliced seamlessly into the balloon perimeter.
   - **Thinking Clouds**: Chain of diminishing circular cloud puffs leading toward the thinker.
 - **Trim-Paths-Style Perimeter Placement**:
-  - **Start (%)**, **End (%)**, and **Offset (°)** (`0%` = Top, `25%` = Right, `50%` = Bottom, `75%` = Left) with exact arc-length parameterization and De Casteljau cubic Bézier splitting.
+  - **Position (%)**, **Tail Start Width** (`0.1` to `4.0` with 1-decimal precision), and **Offset (°)** (`0%` = Top, `25%` = Right, `50%` = Bottom, `75%` = Left), mapping internally to exact arc-length `[start, end]` De Casteljau cubic Bézier splicing.
   - Includes a live interactive **Perimeter Preview Widget** + quick edge snap buttons (`Top 0%`, `Right 25%`, `Bot 50%`, `Left 75%`, `Bot-L 56%`, `Bot-R 44%`).
   - **Tail Length (px)** & **Tip Slant (°)** target controls.
 
@@ -72,11 +72,25 @@ Every tail style works with **any** balloon geometry regardless of preset:
   - **Dotted (Whisper)**: Rounded whisper dots/dashes with configurable **Thickness** and **Dot Spacing** (`ADBE Vector Stroke Dashes`).
 - **Color Pickers**: Interactive color swatch + hex input for both **Fill Color** (with enable toggle & opacity) and **Stroke Color**.
 
-### 5. Bottom Bar — Precomp, Idempotent Build / Update & Full Reversal
+### 5. Tab 4 — `In / Out` (Animations, Read-Time Link & Custom Expression Telemetry)
+- **Timing & Auto Read-Time**:
+  - Configure **Start Delay (s)**, **Fade In Time (s)**, **Fade Out Time (s)**, and **Read Time (s)**.
+  - **Link Read Time to Text Length (25 chars)**: Optional checkbox + **Sec / 25 Chars** slider that dynamically scales reading hold time to the exact length of the dialogue text (`(charCount / 25) * secPer25`).
+- **Expression-Ready Timing & Status Effects**:
+  - Automatically populates live Effect Controls so you can hook up your own custom expressions at any time:
+    - `Bubble Status`: `0` = `waiting`, `1` = `start`, `2` = `in`, `3` = `reading`, `4` = `out`, `5` = `end`
+    - `Bubble In Timing` (`0–100%`), `Bubble Reading Timing` (`0–100%`), `Bubble Out Timing` (`0–100%`), `Bubble Envelope` (`0–100%`)
+    - Editable timing inputs: `Bubble Start Delay (s)`, `Bubble In Time (s)`, `Bubble Link Read Time`, `Bubble Sec Per 25 Chars`, `Bubble Read Time (s)`, `Bubble Out Time (s)`
+- **Animation Styles**:
+  1. **Clementine**: Typewriter text (via basic After Effects Opacity Text Animator) + Balloon stroke growing symmetrically outward from the **tip of the tail** (`Trim Paths`) + Balloon fill fading `0%` → `100%`.
+  2. **Bloat**: Typewriter text + Balloon masking the text via Alpha Track Matte while **expanding horizontally in true path width** (preserving corner radii without `Scale` distortion) + Stroke thickness growing `0` → selected thickness + Fill at `100%`.
+  3. **Sparse Dotted to Solid**: Typewriter text + Balloon stroke appearing from a very sparse dotted line and coalescing smoothly into a solid stroke + Fill gaining in opacity.
+
+### 6. Bottom Bar — Precomp, Idempotent Build / Update & Full Reversal
 - **Make Precomp (`"comic balloon <HEX>"`)**: Checked by default (`true`). Precomposes the centered Text Layer + linked Balloon child (and any attached Emoji / Highlight layers) into an isolated precomposition named `"comic balloon " + 4-digit HEX`. Uncheck at any time to keep or unpack layers directly in the main composition.
 - **Original State Stored in Effects**: Pristine text content, box properties, and original Transform (`Position`, `Anchor Point`, `Scale`, `Rotation`) are stored in Effect Controls (`Comic Balloon State`, `CB Orig Position`, `CB Orig Anchor`, `CB Orig Scale`, `CB Orig Rotation`, `CB Orig Box Size`).
 - **Build / Update Balloon**: Creates a new balloon or updates an existing balloon / precomp in place without visual drift.
-- **Remove Balloon**: Reverses the entire operation — unpacks the precomp (if precomposed), deletes the balloon, removes state effects, and restores the original text box, content, and transform properties.
+- **Remove Balloon**: Reverses the entire operation — unpacks the precomp (if precomposed), deletes the balloon, clears animators/mattes/effects, and restores the original text box, content, and transform properties.
 
 ---
 
