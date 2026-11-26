@@ -73,14 +73,15 @@ Every tail style works with **any** balloon geometry regardless of preset:
 - **Color Pickers**: Interactive color swatch + hex input for both **Fill Color** (with enable toggle & opacity) and **Stroke Color**.
 
 ### 5. Tab 4 — `In / Out` (Animations, Read-Time Link & Custom Expression Telemetry)
-- **Timing & Auto Read-Time**:
-  - Configure **Start Delay (s)**, **Fade In Time (s)**, **Fade Out Time (s)**, and **Read Time (s)**.
+- **Timing, Independent Fade Switches & Auto Read-Time**:
+  - Configure **Start Delay (s)**, **Fade In (s)**, **Fade Out (s)**, and **Read Time (s)**.
+  - **Independent Left-Side Checkboxes**: Toggle the checkbox on the left of **Fade In:** or **Fade Out:** to activate or disable either transition independently (e.g., **Fade In only** or **Fade Out only**).
   - **Link Read Time to Text Length (25 chars)**: Optional checkbox + **Sec / 25 Chars** slider that dynamically scales reading hold time to the exact length of the dialogue text (`(charCount / 25) * secPer25`).
 - **Expression-Ready Timing & Status Effects**:
   - Automatically populates live Effect Controls so you can hook up your own custom expressions at any time:
     - `Bubble Status`: `0` = `waiting`, `1` = `start`, `2` = `in`, `3` = `reading`, `4` = `out`, `5` = `end`
     - `Bubble In Timing` (`0–100%`), `Bubble Reading Timing` (`0–100%`), `Bubble Out Timing` (`0–100%`), `Bubble Envelope` (`0–100%`)
-    - Editable timing inputs: `Bubble Start Delay (s)`, `Bubble In Time (s)`, `Bubble Link Read Time`, `Bubble Sec Per 25 Chars`, `Bubble Read Time (s)`, `Bubble Out Time (s)`
+    - Editable timing inputs: `Bubble Start Delay (s)`, `Bubble Enable In`, `Bubble In Time (s)`, `Bubble Link Read Time`, `Bubble Sec Per 25 Chars`, `Bubble Read Time (s)`, `Bubble Enable Out`, `Bubble Out Time (s)`
 - **Animation Styles**:
   1. **Clementine**: Typewriter text (via basic After Effects Opacity Text Animator) + Balloon stroke growing symmetrically outward from the **tip of the tail** (`Trim Paths`) + Balloon fill fading `0%` → `100%`.
   2. **Bloat**: Typewriter text + Balloon masking the text via Alpha Track Matte while **expanding horizontally in true path width** (preserving corner radii without `Scale` distortion) + Stroke thickness growing `0` → selected thickness + Fill at `100%`.
