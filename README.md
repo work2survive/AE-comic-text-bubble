@@ -53,16 +53,17 @@ Manage reusable comic styles right at the top of the panel:
 
 ### 3. Tab 2 — `Tail` (Styles & Trim-Paths Perimeter Targeting)
 Every tail style works with **any** balloon geometry regardless of preset:
-- **5 Tail Styles**:
+- **6 Tail Styles**:
   - **None**: Closed standalone balloon / caption box.
   - **Line**: Single comic pointer line from the perimeter to the tail target.
   - **Triangle Sharp**: Seamless sharp speech wedge spliced directly into the balloon perimeter (zero internal seam line).
+  - **Curved Triangle**: Classic swooping comic horn spliced seamlessly into the balloon perimeter using paired cubic Bézier curves with a convex outer belly, concave inner arc, and configurable **Tail Curve (%)** (`-100%` to `+100%`).
   - **Lightning Shaped**: Non-self-intersecting zig-zag radio/electronic comic bolt spliced seamlessly into the balloon perimeter.
   - **Thinking Clouds**: Chain of diminishing circular cloud puffs leading toward the thinker.
 - **Trim-Paths-Style Perimeter Placement**:
   - **Position (%)**, **Tail Start Width** (`0.1` to `4.0` with 1-decimal precision), and **Offset (°)** (`0%` = Top, `25%` = Right, `50%` = Bottom, `75%` = Left), mapping internally to exact arc-length `[start, end]` De Casteljau cubic Bézier splicing.
   - Includes a live interactive **Perimeter Preview Widget** + quick edge snap buttons (`Top 0%`, `Right 25%`, `Bot 50%`, `Left 75%`, `Bot-L 56%`, `Bot-R 44%`).
-  - **Tail Length (px)** & **Tip Slant (°)** target controls.
+  - **Tail Length (px)**, **Tip Slant (°)**, and **Tail Curve (%)** target controls.
 
 ### 4. Tab 3 — `Appearance` (Fill, Stroke Styles & Color Pickers)
 - **Line / Stroke Styles**:
