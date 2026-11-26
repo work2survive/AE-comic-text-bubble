@@ -87,6 +87,7 @@ Every tail style works with **any** balloon geometry regardless of preset:
   1. **Clementine**: Typewriter text (via basic After Effects Opacity Text Animator) + Balloon stroke growing symmetrically outward from the **tip of the tail** (`Trim Paths`) + Balloon fill fading `0%` → `100%`.
   2. **Bloat**: Typewriter text + Balloon masking the text via Alpha Track Matte while **expanding horizontally in true path width** (preserving corner radii without `Scale` distortion) + Stroke thickness growing `0` → selected thickness + Fill at `100%`.
   3. **Sparse Dotted to Solid**: Typewriter text + Balloon stroke appearing from a very sparse dotted line and coalescing smoothly into a solid stroke + Fill gaining in opacity.
+  4. **Rovi**: Typewriter text + Balloon stroke growing symmetrically from the **tip of the tail** (`Trim Paths`) + Fill rendered as a **masked inner-glow stroke** (`ADBE Mask Parade`) that follows the growing perimeter and expands inward toward the center — getting thicker and more opaque until the entire balloon interior is filled.
 
 ### 6. Bottom Bar — Precomp, Idempotent Build / Update & Full Reversal
 - **Make Precomp (`"comic balloon <HEX>"`)**: Checked by default (`true`). Precomposes the centered Text Layer + linked Balloon child (and any attached Emoji / Highlight layers) into an isolated precomposition named `"comic balloon " + 4-digit HEX`. Uncheck at any time to keep or unpack layers directly in the main composition.
