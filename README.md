@@ -44,11 +44,12 @@ Manage reusable comic styles right at the top of the panel:
 - **Download**: Export/download the selected preset as a portable `.json` file.
 
 ### 2. Tab 1 — `Balloon` (Geometry & Exterior Padding)
-- **4 Parametric Balloon Geometries**:
+- **5 Parametric Balloon Geometries**:
   - **Square**: Crisp comic caption / sharp rectangular dialogue box.
   - **Rounded Corners**: Exact cubic Bézier rounded rectangle with adjustable **Corner Radius**.
   - **Cloud Shape (Thoughts)**: Divides the balloon perimeter into exact **constant-width** puffs (**Cloud Puffs**), with **Puff Depth (%)** scaled strictly relative to each individual puff's width, plus a **Puff Width Rand (%)** randomizer that varies puff widths while preserving the exact puff count.
   - **Explosion / Shout**: Divides the balloon perimeter into exact **constant-width** spikes (**Burst Spikes**), with **Spike Depth (%)** scaled strictly relative to each individual spike's width, plus a **Spike Width Rand (%)** randomizer that varies spike widths while preserving the exact spike count.
+  - **Dyamond**: Organic undulating / wobbly rounded-rectangle comic balloon with smooth $G^1$ continuous Bézier waves, full rounded-shoulder corner preservation (**Corner Radius**), **Dyamond Waves**, width-relative **Wave Depth (%)**, and **Wave Width Rand (%)** for hand-drawn irregular swells.
 - **Exterior Padding (`Padding X`, `Padding Y`)**: Expands balloon space around the rendered text bounds while keeping both the Text Box and Balloon Anchor Points centered horizontally & vertically.
 
 ### 3. Tab 2 — `Tail` (Styles & Trim-Paths Perimeter Targeting)
