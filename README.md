@@ -43,17 +43,21 @@ Manage reusable comic styles right at the top of the panel:
 - **Open**: Import single-preset or multi-preset `.json` files from disk.
 - **Download**: Export/download the selected preset as a portable `.json` file.
 
-### 2. Tab 1 — `Balloon` (Geometry & Exterior Padding)
-- **6 Parametric Balloon Geometries**:
+### 2. Tab 1 — `Balloon` (Geometry, Universal Wobbly & Exterior Padding)
+- **7 Parametric Balloon Geometries**:
   - **Square**: Crisp comic caption / sharp rectangular dialogue box.
   - **Rounded Corners**: Exact cubic Bézier rounded rectangle with adjustable **Corner Radius**.
+  - **Electric**: Classic 6-sided angular pointed-end comic / radio balloon (`<--->`) with flat horizontal top & bottom edges, pointed left/right side chevrons (**Electric Point (%)** `10–150%`, **Electric Skew (%)** `-75%` to `+75%`), automatic text clearance guard, and optional circular fillet **Corner Radius**.
   - **Cloud Shape (Thoughts)**: Divides the balloon perimeter into exact **constant-width** puffs (**Cloud Puffs**), with **Puff Depth (%)** scaled strictly relative to each individual puff's width, plus a **Puff Width Rand (%)** randomizer that varies puff widths while preserving the exact puff count.
   - **Explosion / Shout**: Divides the balloon perimeter into exact **constant-width** spikes (**Burst Spikes**), with **Spike Depth (%)** scaled strictly relative to each individual spike's width, plus a **Spike Width Rand (%)** randomizer that varies spike widths while preserving the exact spike count.
-  - **Wobbly**: Organic undulating / wobbly rounded-rectangle comic balloon with smooth $G^1$ continuous Bézier waves, full rounded-shoulder corner preservation (**Corner Radius**), **Wobbly Waves**, width-relative **Wave Depth (%)**, and **Wave Width Rand (%)** for hand-drawn irregular swells.
+  - **Wobbly**: Organic undulating / wobbly rounded-rectangle comic balloon with smooth $G^1$ continuous Bézier waves and full rounded-shoulder corner preservation (**Corner Radius**).
   - **Bubble Lines**: Measures each individual visual text line (respecting Left / Center / Right justification and paragraph wrapping) and merges thick padded line-highlight bands into a single unified contour with smooth outer corners and inner step fillets (**Corner Radius**).
+- **Wobbly Outline (`All Shapes — 0 = Crisp`)**:
+  - Dedicated panel available across **all 7 balloon shapes** with **Wobbly Waves** (`0..36`), width-relative **Wave Depth (%)** (`0..50%`), and **Wave Width Rand (%)** (`0..100%`).
+  - Set Waves or Depth to **`0`** for a crisp outline, or raise above `0` to give any shape (`Square`, `Rounded Corners`, `Electric`, `Cloud`, `Explosion`, `Wobbly`, or `Bubble Lines`) a hand-drawn wobbly contour while preserving sharp vertices, cusps, spike tips, and rounded corners.
 - **Exterior Padding (`Padding X`, `Padding Y`)**: Expands balloon space around the rendered text bounds while keeping both the Text Box and Balloon Anchor Points centered horizontally & vertically.
 
-### 3. Tab 2 — `Tail` (Styles & Trim-Paths Perimeter Targeting)
+### 3. Tab 2 — `Tail` (Styles & Dual Placement Methods)
 Every tail style works with **any** balloon geometry regardless of preset:
 - **6 Tail Styles**:
   - **None**: Closed standalone balloon / caption box.
@@ -62,10 +66,14 @@ Every tail style works with **any** balloon geometry regardless of preset:
   - **Curved Triangle**: Classic swooping comic horn spliced seamlessly into the balloon perimeter using paired cubic Bézier curves with a convex outer belly, concave inner arc, and configurable **Tail Curve (%)** (`-100%` to `+100%`).
   - **Lightning Shaped**: Non-self-intersecting zig-zag radio/electronic comic bolt spliced seamlessly into the balloon perimeter.
   - **Thinking Clouds**: Chain of diminishing circular cloud puffs leading toward the thinker.
-- **Trim-Paths-Style Perimeter Placement**:
-  - **Position (%)**, **Tail Start Width** (`0.1` to `4.0` with 1-decimal precision), and **Offset (°)** (`0%` = Top, `25%` = Right, `50%` = Bottom, `75%` = Left), mapping internally to exact arc-length `[start, end]` De Casteljau cubic Bézier splicing.
-  - Includes a live interactive **Perimeter Preview Widget** + quick edge snap buttons (`Top 0%`, `Right 25%`, `Bot 50%`, `Left 75%`, `Bot-L 56%`, `Bot-R 44%`).
-  - **Tail Length (px)**, **Tip Slant (°)**, and **Tail Curve (%)** target controls.
+- **2 Tail Placement Methods**:
+  1. **`1. Trim Paths Perimeter (%)`**:
+     - **Position (%)**, **Tail Start Width** (`0.1` to `4.0` with 1-decimal precision), and **Offset (°)** (`0%` = Top, `25%` = Right, `50%` = Bottom, `75%` = Left), mapping internally to exact arc-length `[start, end]` De Casteljau cubic Bézier splicing.
+     - Includes a live interactive **Perimeter Preview Widget** + quick edge snap buttons (`Top 0%`, `Right 25%`, `Bot 50%`, `Left 75%`, `Bot-L 56%`, `Bot-R 44%`), plus **Tail Length (px)**, **Tip Slant (°)**, and **Tail Curve (%)** controls.
+  2. **`2. Target Guide Layer (Closest Pt)`**:
+     - Creates a draggable After Effects Guide Layer (`"Tail Target <HEX>"`, `guideLayer = true` so it never renders in final output) in the active composition.
+     - Live `createPath(...)` expressions dynamically slide the **tail origin** to the **closest point on the balloon perimeter** as you drag `"Tail Target <HEX>"` in the viewport (works seamlessly in both Precomp and Non-Precomp modes).
+     - **Pin Tail Tip to Draggable Guide**: When checked (default), pins the tail tip directly onto `"Tail Target <HEX>"`; when unchecked, places the tail origin at the closest perimeter point and projects outward using **Tail Length (px)** and **Tip Slant (°)**.
 
 ### 4. Tab 3 — `Appearance` (Fill, Stroke Styles & Color Pickers)
 - **Line / Stroke Styles**:
