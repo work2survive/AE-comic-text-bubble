@@ -68,8 +68,7 @@ Every tail style works with **any** balloon geometry regardless of preset:
   - **Thinking Clouds**: Chain of diminishing circular cloud puffs leading toward the thinker.
 - **2 Tail Placement Methods**:
   1. **`1. Trim Paths Perimeter (%)`**:
-     - **Position (%)**, **Tail Start Width** (`0.1` to `4.0` with 1-decimal precision), and **Offset (°)** (`0%` = Top, `25%` = Right, `50%` = Bottom, `75%` = Left), mapping internally to exact arc-length `[start, end]` De Casteljau cubic Bézier splicing.
-     - Includes a live interactive **Perimeter Preview Widget** + quick edge snap buttons (`Top 0%`, `Right 25%`, `Bot 50%`, `Left 75%`, `Bot-L 56%`, `Bot-R 44%`), plus **Tail Length (px)**, **Tip Slant (°)**, and **Tail Curve (%)** controls.
+     - Split 2-column layout with a full-column interactive **Perimeter Preview Widget** on the left (click or drag anywhere around the balloon outline) and **Position (%)**, **Tail Start Width** (`0.1` to `4.0`), and **Offset (°)** (`0%` = Top, `25%` = Right, `50%` = Bottom, `75%` = Left) stacked in the right column, plus **Tail Length (px)**, **Tip Slant (°)**, and **Tail Curve (%)** below.
   2. **`2. Target Guide Layer (Closest Pt)`**:
      - Creates a draggable After Effects Guide Layer (`"Tail Target <HEX>"`, `guideLayer = true` so it never renders in final output) in the active composition.
      - Live `createPath(...)` expressions dynamically slide the **tail origin** to the **closest point on the balloon perimeter** as you drag `"Tail Target <HEX>"` in the viewport (works seamlessly in both Precomp and Non-Precomp modes).
