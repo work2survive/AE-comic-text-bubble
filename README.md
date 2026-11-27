@@ -69,10 +69,10 @@ Every tail style works with **any** balloon geometry regardless of preset:
 - **2 Tail Placement Methods**:
   1. **`1. Trim Paths Perimeter (%)`**:
      - Split 2-column layout with a full-column interactive **Perimeter Preview Widget** on the left (click or drag anywhere around the balloon outline) and **Position (%)**, **Tail Start Width** (`0.1` to `4.0`), and **Offset (°)** (`0%` = Top, `25%` = Right, `50%` = Bottom, `75%` = Left) stacked in the right column, plus **Tail Length (px)**, **Tip Slant (°)**, and **Tail Curve (%)** below.
-  2. **`2. Target Guide Layer (Closest Pt)`**:
-     - Creates a draggable After Effects Guide Layer (`"Tail Target <HEX>"`, `guideLayer = true` so it never renders in final output) in the active composition.
-     - Live `createPath(...)` expressions dynamically slide the **tail origin** to the **closest point on the balloon perimeter** as you drag `"Tail Target <HEX>"` in the viewport (works seamlessly in both Precomp and Non-Precomp modes).
-     - **Pin Tail Tip to Draggable Guide**: When checked (default), pins the tail tip directly onto `"Tail Target <HEX>"`; when unchecked, places the tail origin at the closest perimeter point and projects outward using **Tail Length (px)** and **Tip Slant (°)**.
+  2. **`2. Null Object Target (Closest Pt)`**:
+     - Creates a draggable After Effects Null Object (`comp.layers.addNull()`, `"Tail Target <HEX>"`, `guideLayer = true` so it never renders in final output) in the active composition.
+     - Connects the **very tip of the tail** directly to the Null Object's coordinates while placing the **tail origin** at the **closest point (shortest Euclidean distance)** on the balloon perimeter (works seamlessly in both Precomp and Non-Precomp modes, including tail-first `Cloud` and `Explosion` balloons).
+     - **Perimeter `Offset (°)` Retained**: Keeps the **Offset (`-180°` to `+180°`)** slider active so you can slide the tail's base origin around the perimeter away from the shortest-distance point while keeping the tail tip locked onto the Null Object.
 
 ### 4. Tab 3 — `Appearance` (Fill, Stroke Styles & Color Pickers)
 - **Line / Stroke Styles**:
